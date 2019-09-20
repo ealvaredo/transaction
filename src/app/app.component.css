@@ -1,0 +1,76 @@
+.menu-top {
+    background-color: #DBDBDB;
+    height: 30px;
+}
+
+.header {
+    background-color: #EBECE9;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    min-height: 100px;
+}
+
+.menu-mobile {
+    position: absolute;
+    right: 5%;
+    top: 50px;
+    display: none;
+    cursor: pointer;
+}
+
+.logo {
+    margin: 23px 0 30px 45px;
+}
+
+.header .links {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.header .links .link {
+    /* background-color: #518bc5; */
+    /* height: 50px; */
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12px;
+    margin: 0 1px;
+    font-size: 17px;
+    text-align: center;
+    color: #4C4C4C;
+}
+
+footer > div {
+    background-color: #6c6b6f;
+    padding-top: 1px;
+    padding: 25px 0 25px 45px;
+}
+
+footer ul li a {
+    color: #FFF;
+    font-size: 12px;
+}
+
+footer p {
+    color: #fff;
+    font-size: 12px;
+    margin: 15px 0px 0;
+}

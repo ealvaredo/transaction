@@ -1,0 +1,92 @@
+<div class='container'>
+    <form [formGroup]="usuario" (ngSubmit)="onSubmit()">
+        <div class='form-group'>
+            <label for='numeroCliente'>
+                Número de cliente:
+                <input class="form-control" type="text" formControlName="numeroCliente">
+            </label>
+
+
+        </div>
+
+        <div class='form-group'>
+            <label>
+                Razón social:
+                <input class="form-control" type="text" formControlName="lastName">
+
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    <div *ngIf="lastName.errors.required" class="alert alert-danger">
+                        La razón social es requerido.
+                    </div>
+
+                </div>
+
+                <div *ngIf="lastName.invalid && lastName.errors?.serverError" class="alert alert-danger">
+                    {{lastName.errors.serverError}}
+                </div>
+
+            </label>
+        </div>
+
+        <div class='form-group'>
+            <label>
+                Cuit:
+                <input class="form-control" type="text" formControlName="user">
+
+                <div *ngIf="user.invalid && (user.dirty || user.touched)">
+                    <div *ngIf="user.errors.required" class="alert alert-danger">
+                        El CUIT es un valor requerido
+                    </div>
+                    <div *ngIf="user.errors.minlength" class="alert alert-danger">
+                            El CUIT debe tener 11 caracteres
+                        </div>
+    
+                </div>
+
+                <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
+                    {{user.errors.serverError}}
+                </div>
+
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Email:
+                <input class="form-control" type="text" formControlName="mail">
+
+                <div *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                    <div *ngIf="mail.errors.required" class="alert alert-danger">
+                        El email es un valor requerido
+                    </div>
+
+                </div>
+
+                <div *ngIf="mail.invalid && mail.errors?.serverError" class="alert alert-danger">
+                    {{mail.errors.serverError}}
+                </div>
+
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Teléfono:
+                <input class="form-control" type="text" formControlName="telefono">
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Provincia:
+                <input class="form-control" type="text" formControlName="provincia">
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Localidad:
+                <input class="form-control" type="text" formControlName="localidad">
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)='onCancelar()'>Cancelar</button>
+    </form>
+</div>
