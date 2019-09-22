@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   login = new FormGroup({
-    user: new FormControl('', [Validators.required  ]),
     password: new FormControl('', [Validators.required])
   });
 
@@ -43,7 +42,6 @@ export class LoginComponent implements OnInit {
       console.log(this.login.get('user').errors.serverError);
     }
 
-  get user() { return this.login.get('user'); }
   get password() { return this.login.get('password'); }
 
 }

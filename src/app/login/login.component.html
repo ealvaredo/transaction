@@ -2,19 +2,7 @@
     <form [formGroup]="login" (ngSubmit)="onSubmit()">
         <div class='form-group'>
             <label for='user'>
-                Username: 
-                
-                <input class="form-control" type="text" formControlName="user" >
-                <div *ngIf="user?.invalid && (user?.dirty || user?.touched)">
-                    <div *ngIf="user.errors.required" class="alert alert-danger">
-                        Ingrese su usuario.
-                    </div>
-                </div>
-
-                <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
-                    {{user.errors.serverError}}
-                </div>
-
+                Username: 30654118767 - soluciones multimedia s.a 
             </label>
         </div>
 
@@ -29,6 +17,11 @@
                         Ingrese su contraseña.
                     </div>
                 </div>
+
+                <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
+                    {{user.errors.serverError}}
+                </div>
+
 
             </label>
         </div>
