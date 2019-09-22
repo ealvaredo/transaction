@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url : "https://gurupago.com:5051"
+  url : "http://gurupago.com:5051"
 };
 
 /*
