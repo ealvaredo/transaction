@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators , ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   login = new FormGroup({
-    user: new FormControl('', [Validators.required]),
+    user: new FormControl('', [Validators.required  ]),
     password: new FormControl('', [Validators.required])
   });
 
@@ -39,9 +39,11 @@ export class LoginComponent implements OnInit {
   }
 
   mostrarError(error) {
-    console.log(error);
-      this.login.get("user").setErrors({ serverError: 'Login incorrecto.' });
-  }
+      this.login.get('user').setErrors({ 'serverError': 'Login incorrecto.' });
+      console.log(this.login.get('user').errors.serverError);
+    }
 
+  get user() { return this.login.get('user'); }
+  get password() { return this.login.get('password'); }
 
 }

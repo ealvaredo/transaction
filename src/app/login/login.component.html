@@ -2,9 +2,15 @@
     <form [formGroup]="login" (ngSubmit)="onSubmit()">
         <div class='form-group'>
             <label for='user'>
-                Username:
-                <input class="form-control" type="text" formControlName="user" required>
+                Username: 
                 
+                <input class="form-control" type="text" formControlName="user" >
+                <div *ngIf="user?.invalid && (user?.dirty || user?.touched)">
+                    <div *ngIf="user.errors.required" class="alert alert-danger">
+                        Ingrese su usuario.
+                    </div>
+                </div>
+
                 <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
                     {{user.errors.serverError}}
                 </div>
@@ -14,10 +20,15 @@
 
 
         <div class='form-group'>
-            <label>
+            <label for ='password'>
                 Password:
-                <input class="form-control" type="text" formControlName="password" required>
+                <input class="form-control" type="password" formControlName="password" >
 
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                    <div *ngIf="password.errors.required" class="alert alert-danger">
+                        Ingrese su contraseña.
+                    </div>
+                </div>
 
             </label>
         </div>
