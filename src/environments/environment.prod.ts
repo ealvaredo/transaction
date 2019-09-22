@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url : "http://localhost:5051"
+  url : "https://gurupago.com:5051"
 };

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url : "http://localhost:5051"
+  url : "https://gurupago.com:5051"
 };
 
 /*
