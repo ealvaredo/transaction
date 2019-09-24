@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
+                <div *ngIf="user?.invalid && user?.errors?.serverError" class="alert alert-danger">
                     {{user.errors.serverError}}
                 </div>
 

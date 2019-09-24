@@ -30,11 +30,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.login.value);
+
+    if (this.login.valid) {
       
       this.httpClient.post(
         environment.url + '/user/login', this.login.value, this.httpOptions).subscribe(
           data => this.router.navigate(['/launcher']), error => this.mostrarError(error.error)
         )
+    } 
   }
 
   mostrarError(error) {
