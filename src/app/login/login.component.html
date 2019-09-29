@@ -1,25 +1,39 @@
 <div class='container'>
     <form [formGroup]="login" (ngSubmit)="onSubmit()">
         <div class='form-group'>
-            <label for='user'>
-                Username: 30654118767 - soluciones multimedia s.a 
+            <label for ='username' class='required'>
+                Usuario:
+                <input class="form-control" type="text" formControlName="username" >
+
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched || submitted)">
+                    <div *ngIf="username.errors.required" class="alert alert-danger">
+                        Ingrese su usuario.
+                    </div>
+                </div>
+
+                <div *ngIf="username?.invalid && username?.errors?.serverError" class="alert alert-danger">
+                    {{username.errors.serverError}}
+                </div>
+
+
             </label>
         </div>
 
 
+
         <div class='form-group'>
-            <label for ='password'>
+            <label for ='password' class='required'>
                 Password:
                 <input class="form-control" type="password" formControlName="password" >
 
-                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched || submitted)">
                     <div *ngIf="password.errors.required" class="alert alert-danger">
                         Ingrese su contraseña.
                     </div>
                 </div>
 
-                <div *ngIf="user?.invalid && user?.errors?.serverError" class="alert alert-danger">
-                    {{user.errors.serverError}}
+                <div *ngIf="password?.invalid && password?.errors?.serverError" class="alert alert-danger">
+                    {{password.errors.serverError}}
                 </div>
 
 

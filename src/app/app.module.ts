@@ -10,8 +10,12 @@ import { UserComponent } from './user/user.component';
 import { TransaccionComponent } from './transaccion/transaccion.component';
 import { LauncherComponent } from './launcher/launcher.component';
 import { Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor-service.service';
+import { UserconfirmationComponent } from './userconfirmation/userconfirmation.component';
+import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
+import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 
 
 
@@ -22,7 +26,10 @@ import { LoginComponent } from './login/login.component';
     UserComponent,
     TransaccionComponent,
     LauncherComponent,
-    LoginComponent
+    LoginComponent,
+    UserconfirmationComponent,
+    TransactionconfirmationComponent,
+    TransactiondeleteconfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,14 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicAuthHtppInterceptorService,
+      multi: true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,9 @@ import { UserComponent } from './user/user.component';
 import { TransaccionComponent } from './transaccion/transaccion.component';
 import { LauncherComponent } from './launcher/launcher.component';
 import { LoginComponent } from './login/login.component';
+import { UserconfirmationComponent } from './userconfirmation/userconfirmation.component';
+import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
+import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 
 
 const routes: Routes = [
@@ -21,6 +24,18 @@ const routes: Routes = [
   {
     path: 'launcher',
     component: LauncherComponent
+  },
+  {
+    path: 'usuarioconfirmacion',
+    component: UserconfirmationComponent
+  },
+  {
+    path: 'transactionconfirmation',
+    component: TransactionconfirmationComponent
+  },
+  {
+    path: 'deletetransactionconfirmation',
+    component: TransactiondeleteconfirmationComponent
   },
   {
     path: '',

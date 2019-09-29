@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators , ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from '../service/authentication-service.service';
 
 @Component({
   selector: 'app-login',
@@ -11,40 +12,40 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  // Http Headers
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
 
   login = new FormGroup({
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
 
+  submitted: Boolean = false;
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient, private authenthicationService : AuthenticationService) { }
 
   ngOnInit() {
+    this.authenthicationService.logOut();
   }
 
   onSubmit() {
+    this.authenthicationService.logOut();
+    this.submitted = true;
     console.log(this.login.value);
-
     if (this.login.valid) {
-      
-      this.httpClient.post(
-        environment.url + '/user/login', this.login.value, this.httpOptions).subscribe(
-          data => this.router.navigate(['/launcher']), error => this.mostrarError(error.error)
+
+      this.authenthicationService.authenticate(this.username.value, this.password.value).subscribe(
+          (data:{}) =>  this.router.navigate(['/launcher']), error => this.mostrarError(error)
         )
-    } 
+    }  else {
+      console.log('no valido');
+    }
   }
 
   mostrarError(error) {
-      this.login.get('user').setErrors({ 'serverError': 'Login incorrecto.' });
-      console.log(this.login.get('user').errors.serverError);
+//      this.login.get('password').setErrors({ 'serverError': 'Login incorrecto.' });
+      console.log(error);
     }
 
   get password() { return this.login.get('password'); }
+  get username() { return this.login.get('username'); }
 
 }

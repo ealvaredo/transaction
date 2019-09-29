@@ -14,12 +14,6 @@ import { environment } from 'src/environments/environment';
 
 export class TransaccionComponent implements OnInit {
 
-  // Http Headers
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
 
   transaccion = new FormGroup({
     numeroCliente: new FormControl(),
@@ -31,19 +25,28 @@ export class TransaccionComponent implements OnInit {
     descripcion: new FormControl()
   });
 
+  submitted: Boolean = false;
+
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
+  
+    this.submitted = false;
+  
   }
 
   onSubmit() {
     console.log(this.fechaPrimerVencimiento.value);
-    
-    this.httpClient.post(
-      environment.url + '/plan/crear', this.transaccion.value, this.httpOptions).subscribe(
-        data => this.router.navigate(['']), error => this.mostrarError(error.error)
-      )
 
+    this.submitted = true;
+    console.log(this.transaccion.valid);
+    
+    if (this.transaccion.valid) {
+    this.httpClient.post(
+      environment.url + '/plan/crear', this.transaccion.value).subscribe(
+        data => this.router.navigate(['/transactionconfirmation']), error => this.mostrarError(error.error)
+      )
+    }
   }
 
 
@@ -65,7 +68,7 @@ export class TransaccionComponent implements OnInit {
 
   get sourceUserId() { return this.transaccion.get('sourceUserId'); }
   get fechaPrimerVencimiento() { return this.transaccion.get('fechaPrimerVencimiento'); }
-  get monto() { return this.transaccion.get('monto'); }
+  get amount() { return this.transaccion.get('amount'); }
   get externalTransactionNumber() { return this.transaccion.get('externalTransactionNumber'); }
   
   

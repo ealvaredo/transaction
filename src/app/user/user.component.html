@@ -14,7 +14,7 @@
                 Razón social:
                 <input class="form-control" type="text" formControlName="lastName">
 
-                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || submitted)">
                     <div *ngIf="lastName.errors.required" class="alert alert-danger">
                         La razón social es requerido.
                     </div>
@@ -33,7 +33,7 @@
                 Cuit:
                 <input class="form-control" type="text" formControlName="user">
 
-                <div *ngIf="user.invalid && (user.dirty || user.touched)">
+                <div *ngIf="user.invalid && (user.dirty || user.touched || submitted)">
                     <div *ngIf="user.errors.required" class="alert alert-danger">
                         El CUIT es un valor requerido
                     </div>
@@ -54,7 +54,7 @@
                 Email:
                 <input class="form-control" type="text" formControlName="mail">
 
-                <div *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+                <div *ngIf="mail.invalid && (mail.dirty || mail.touched || submitted)">
                     <div *ngIf="mail.errors.required" class="alert alert-danger">
                         El email es un valor requerido
                     </div>

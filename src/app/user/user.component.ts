@@ -23,28 +23,29 @@ export class UserComponent implements OnInit {
 
   constructor(private router: Router, private httpClient : HttpClient) { }
 
-   // Http Headers
-   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+  submitted: Boolean = false;
+
 
   ngOnInit() {
 
-    
+    this.submitted = false;
 
   }
 
 
   onSubmit() {
 
+    this.submitted = true;
 
+  console.log(this.usuario.valid);
+      
+
+    if (this.usuario.valid) {
       this.httpClient.post(
-        environment.url + '/client/crear', this.usuario.value, this.httpOptions).subscribe( 
-          data => this.router.navigate(['']), error=> this.mostrarError(error.error)
+        environment.url + '/client/crear', this.usuario.value).subscribe( 
+          data => this.router.navigate(['/usuarioconfirmacion']), error=> this.mostrarError(error.error)
           )
-  
+        }
     }
 
 

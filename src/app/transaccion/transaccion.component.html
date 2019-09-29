@@ -15,7 +15,7 @@
                     Cuit:
                     <input class="form-control" type="text" formControlName="sourceUserId">
 
-                    <div *ngIf="sourceUserId.invalid && (sourceUserId.dirty || sourceUserId.touched)">
+                    <div *ngIf="sourceUserId.invalid && (sourceUserId.dirty || sourceUserId.touched || submitted)">
                             <div *ngIf="sourceUserId.errors.required" class="alert alert-danger">
                                 El CUIT es un valor requerido
                             </div>
@@ -39,8 +39,8 @@
 
 
 
-                    <div *ngIf="externalTransactionNumber.invalid && (externalTransactionNumber.dirty || externalTransactionNumber.touched)">
-                            <div *ngIf="externalTransactionNumber.errors.required" class="alert alert-danger">
+                    <div *ngIf="externalTransactionNumber?.invalid && (externalTransactionNumber?.dirty || externalTransactionNumber?.touched) || submitted">
+                            <div *ngIf="externalTransactionNumber?.errors?.required" class="alert alert-danger">
                                 El nro de comprobante es requerido
                             </div>
                         </div>
@@ -65,11 +65,11 @@
                     Monto:
                     <input class="form-control" type="text" formControlName="amount">
 
-                    <div *ngIf="amount.invalid && (amount.dirty || amount.touched)">
-                            <div *ngIf="amount.errors.pattern" class="alert alert-danger">
+                    <div *ngIf="amount?.invalid && (amount?.dirty || amount?.touched) || submitted">
+                            <div *ngIf="amount?.errors?.pattern" class="alert alert-danger">
                                 Ingresar un número decimal (54,34)
                             </div>
-                            <div *ngIf="amount.errors.required" class="alert alert-danger">
+                            <div *ngIf="amount?.errors?.required" class="alert alert-danger">
                                     Valor requerido
                                 </div>
                 

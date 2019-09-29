@@ -14,12 +14,6 @@ export class LauncherComponent implements OnInit {
 
   planes: Object[];
 
-  // Http Headers
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
 
   constructor( private router: Router, private  httpClient: HttpClient) { }
 
@@ -32,7 +26,7 @@ export class LauncherComponent implements OnInit {
   load() {
 
     this.httpClient.get<Object[]>(
-      environment.url + '/plan/get',this.httpOptions).subscribe(
+      environment.url + '/plan/get').subscribe(
         data => this.planes = data, error => this.mostrarError(error.error)
       );
   
@@ -54,8 +48,8 @@ export class LauncherComponent implements OnInit {
    delete(id:number) {
      console.log(id);
     this.httpClient.post<void> (
-      environment.url + '/plan/delete', id, this.httpOptions).subscribe(
-        data => this.load());
+      environment.url + '/plan/delete', {id}).subscribe(
+        data => this.router.navigate(['/deletetransactionconfirmation']));
  }
  
 }
