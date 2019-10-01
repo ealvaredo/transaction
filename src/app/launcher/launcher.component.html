@@ -1,40 +1,43 @@
 <div class="container">
 
-<button type="button" class="btn btn-primary" (click)="nuevoCliente()">Nuevo cliente</button>
+    <div class="buttons">
 
-<button type="button" class="btn btn-primary" (click)="nuevaTransaccion()">Nueva transacción</button>
+        <button type="button" class="btn btn-primary" (click)="nuevoCliente()">Nuevo cliente</button>
+
+        <button type="button" class="btn btn-primary" (click)="nuevaTransaccion()">Nueva transacción</button>
+    </div>
 
 
-<div class='transacciones'>
-<h1>Transacciones</h1>
+    <div class='transacciones'>
+        <h1>Transacciones</h1>
 
-<table class='transacciones'>
-    <th>Transacción</th>
-    <th>Fecha de emisión</th>
-    <th>Comercio/persona</th>
-    <th>Descripción</th>
-    <th>Vencimiento</th>
-    <th>Fecha pago</th>
-    <th>Estado</th>
-    <th>Monto</th>
-    <th>Comisión</th>
-    <th>Total</th>
-    <th></th>
-    <tr *ngFor="let plan of planes">
-        <td>{{plan.id}}</td>
-        <td>{{plan.createdDate}}</td>
-        <td>{{plan.sourceUserName}}</td>
-        <td>{{plan.concept}}</td>
-        <td>{{plan.expirationDate}}</td>
-        <td>{{plan.updatedDate}}</td>
-        <td>PENDIENTE</td>
-        <td>{{plan.amount}}</td>
-        <td>{{plan.amountFee}}</td>
-        <td>{{plan.total}}</td>
-        <td><img  src="assets/delete.png" (click)='delete(plan.id)' /> </td>
+        <table class='transacciones'>
+            <th>Transacción</th>
+            <th>Fecha de emisión</th>
+            <th>Comercio/persona</th>
+            <th>Descripción</th>
+            <th>Vencimiento</th>
+            <th>Fecha pago</th>
+            <th>Estado</th>
+            <th>Monto</th>
+            <th>Comisión</th>
+            <th>Total</th>
+            <th></th>
+            <tr *ngFor="let plan of planes">
+                <td>{{plan.id}}</td>
+                <td>{{plan.createdDate}}</td>
+                <td>{{plan.sourceUserName}}</td>
+                <td>{{plan.concept}}</td>
+                <td>{{plan.expirationDate}}</td>
+                <td>{{plan.updatedDate}}</td>
+                <td>PENDIENTE</td>
+                <td>{{plan.amount |  number : '1.2-2'}}</td>
+                <td>{{plan.amountFee | number : '1.2-2'}}</td>
+                <td>{{plan.total| number : '1.2-2' }}</td>
+                <td><img src="assets/delete.png" (click)='delete(plan.id)' title="Eliminar transacción"/> </td>
 
-    </tr>
+            </tr>
 
-</table>
+        </table>
 
-</div>
+    </div>
