@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="password?.invalid && password?.errors?.serverError" class="alert alert-danger">
+                <div *ngIf="password?.errors?.serverError" class="alert alert-danger">
                     {{password.errors.serverError}}
                 </div>
 

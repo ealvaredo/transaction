@@ -41,8 +41,9 @@ export class LoginComponent implements OnInit {
   }
 
   mostrarError(error) {
-//      this.login.get('password').setErrors({ 'serverError': 'Login incorrecto.' });
-      console.log(error);
+      this.login.get('password').setErrors({ 'serverError': 'Login incorrecto.' });
+      console.log(this.login.get('password').errors);
+
     }
 
   get password() { return this.login.get('password'); }

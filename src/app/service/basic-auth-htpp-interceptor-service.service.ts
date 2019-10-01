@@ -8,34 +8,36 @@ import { Router } from '@angular/router';
 })
 export class BasicAuthHtppInterceptorService implements HttpInterceptor {
   constructor(private router: Router) { }
-  
-  intercept(req: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
 
-    
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) 
-    {
-      console.log("probando" +  sessionStorage.getItem('username') + sessionStorage.getItem('token'));
-   
+
+
+    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
+      console.log("probando" + sessionStorage.getItem('username') + sessionStorage.getItem('token'));
+
       req = req.clone({
         setHeaders: {
           Authorization: sessionStorage.getItem('token')
         }
       })
+      return next.handle(req).pipe(catchError((error, caught) => {
+        //intercept the respons error and displace it to the console
+        console.log(error);
+        this.handleAuthError(error);
+        return of(error);
+      }) as any);
     }
-    return next.handle(req).pipe(catchError((error, caught) => {
-      //intercept the respons error and displace it to the console
-      console.log(error);
-      this.handleAuthError(error);
-      return of(error);
-    }) as any);
+    else {
+      return next.handle(req);
+    }
   }
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
     //handle your auth error or rethrow
     if (err.status === 401) {
       //navigate /delete cookies or whatever
-      console.log('handled error ' + err.status);
+      console.log('handled error ' + err.message);
       this.router.navigate(['']);
       // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
       return of(err.message);
