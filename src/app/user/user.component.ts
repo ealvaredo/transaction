@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   lastName : new FormControl('', [Validators.required]),
   user : new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
   mail : new FormControl('', [Validators.required]),
-  telefono : new FormControl(),
+  telefono : new FormControl('', Validators.pattern('\\d{0,14}')),
   provincia : new FormControl(),
   localidad : new FormControl()});
 
@@ -79,4 +79,5 @@ export class UserComponent implements OnInit {
   get lastName() { return this.usuario.get('lastName'); }
   get mail() { return this.usuario.get('mail'); }
   get user() { return this.usuario.get('user'); }
+  get telefono() { return this.usuario.get('telefono'); }
 }

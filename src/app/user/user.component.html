@@ -40,7 +40,6 @@
                     <div *ngIf="user.errors.pattern" class="alert alert-danger">
                         El CUIT debe tener 11 caracteres numéricos.
                     </div>
-
                 </div>
 
                 <div *ngIf="user.invalid && user.errors?.serverError" class="alert alert-danger">
@@ -71,6 +70,14 @@
             <label>
                 Teléfono:
                 <input class="form-control" type="text" formControlName="telefono">
+
+                <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched || submitted)">
+                    <div *ngIf="telefono.errors.pattern" class="alert alert-danger">
+                        Formato de teléfono inválido (Por ejemplo, 0113333333)
+                    </div>
+                </div>
+
+
             </label>
         </div>
         <div class='form-group'>
