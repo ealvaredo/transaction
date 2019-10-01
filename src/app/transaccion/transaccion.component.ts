@@ -17,7 +17,7 @@ export class TransaccionComponent implements OnInit {
 
   transaccion = new FormGroup({
     numeroCliente: new FormControl(),
-    sourceUserId: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
+    sourceUserId: new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
     externalTransactionNumber: new FormControl('', [Validators.required]),
     cuotas: new FormControl(),
     fechaPrimerVencimiento: new FormControl('', [Validators.required]),
@@ -61,7 +61,7 @@ export class TransaccionComponent implements OnInit {
 
 
   onCancelar() {
-    this.router.navigate(['']);
+    this.router.navigate(['/launcher']);
 
   }
 

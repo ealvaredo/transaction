@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   usuario = new FormGroup( {
   numeroCliente : new FormControl(),
   lastName : new FormControl('', [Validators.required]),
-  user : new FormControl('', [Validators.required,  Validators.minLength(11), Validators.maxLength(11)]),
+  user : new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
   mail : new FormControl('', [Validators.required]),
   telefono : new FormControl(),
   provincia : new FormControl(),
@@ -71,7 +71,7 @@ export class UserComponent implements OnInit {
    } 
   
     onCancelar() {
-      this.router.navigate(['']);
+      this.router.navigate(['/launcher']);
       
     }
 

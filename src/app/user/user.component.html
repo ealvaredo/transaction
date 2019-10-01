@@ -37,8 +37,8 @@
                     <div *ngIf="user.errors.required" class="alert alert-danger">
                         El CUIT es un valor requerido
                     </div>
-                    <div *ngIf="user.errors.minlength" class="alert alert-danger">
-                        El CUIT debe tener 11 caracteres
+                    <div *ngIf="user.errors.pattern" class="alert alert-danger">
+                        El CUIT debe tener 11 caracteres numéricos.
                     </div>
 
                 </div>
