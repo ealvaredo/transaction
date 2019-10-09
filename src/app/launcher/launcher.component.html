@@ -1,43 +1,66 @@
-<div class="container">
+<div class="container top">
 
-    <div class="buttons">
+    <div class="card-deck">
 
-        <button type="button" class="btn btn-primary" (click)="nuevoCliente()">Nuevo cliente</button>
 
-        <button type="button" class="btn btn-primary" (click)="nuevaTransaccion()">Nueva transacción</button>
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Clientes</div>
+            <div class="card-body text-primary">
+                <h5 class="card-title">Clientes</h5>
+                <p class="card-text">Desde esta opción se pude crear un nuevo cliente.</p>
+                <button type="button" class="btn btn-outline-primary stretched-link" (click)="nuevoCliente()">Nuevo
+                    cliente</button>
+            </div>
+        </div>
+
+
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Transacciones</div>
+            <div class="card-body text-primary">
+                <h5 class="card-title">Transacciones</h5>
+                <p class="card-text">Desde esta opción se puden crear nuevas transacciones.</p>
+                <button type="button" class="btn btn-outline-primary stretched-link" (click)="nuevaTransaccion()">Nueva
+                    transacción</button>
+            </div>
+        </div>
+
+
     </div>
 
 
-    <div class='transacciones'>
-        <h1>Transacciones</h1>
+    <div class='container'>
 
-        <table class='transacciones'>
-            <th>Transacción</th>
-            <th>Fecha de emisión</th>
-            <th>Comercio/persona</th>
-            <th>Descripción</th>
-            <th>Vencimiento</th>
-            <th>Fecha de emisión</th>
-            <th>Estado</th>
-            <th>Monto</th>
-            <th>Comisión</th>
-            <th>Total</th>
-            <th></th>
+        <table class='table table-striped table-hover table-sm'>
+                <caption>Listado de transacciones</caption>
+            <thead>
+                <th scope="col">Transacción</th>
+                <th scope="col">Fecha de emisión</th>
+                <th scope="col">Comercio/persona</th>
+                <th scope="col">Comprobante - Descripción</th>
+                <th scope="col">Vencimiento</th>
+<!--                <th scope="col">Fecha de emisión</th>-->
+                <th scope="col">Estado</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Comisión</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </thead>
+            <tbody>
             <tr *ngFor="let plan of planes">
-                <td>{{plan.id}}</td>
+                <th scope='row'>{{plan.id}}</th>
                 <td>{{plan.createdDate}}</td>
-                <td>{{plan.sourceUserName}}</td>
-                <td>{{plan.concept}}</td>
+                <td>{{plan.sourceUserName}} ({{plan.sourceUserCode}})</td>
+                <td>{{plan.externalTransactionNumber}} - {{plan.clarification}}</td>
                 <td>{{plan.expirationDate}}</td>
-                <td>{{plan.updatedDate}}</td>
+<!--                <td>{{plan.updatedDate}}</td>-->
                 <td>PENDIENTE</td>
                 <td>{{plan.amount |  number : '1.2-2'}}</td>
                 <td>{{plan.amountFee | number : '1.2-2'}}</td>
                 <td>{{plan.total| number : '1.2-2' }}</td>
-                <td><img src="assets/delete.png" (click)='delete(plan.id)' title="Eliminar transacción"/> </td>
+                <td><img src="assets/delete.png" (click)='delete(plan.id)' title="Eliminar transacción" /> </td>
 
             </tr>
-
+        </tbody>
         </table>
 
     </div>

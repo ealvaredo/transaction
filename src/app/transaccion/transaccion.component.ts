@@ -22,7 +22,7 @@ export class TransaccionComponent implements OnInit {
     cuotas: new FormControl(),
     fechaPrimerVencimiento: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required,Validators.pattern('\\d+\\.\\d{2}')]),
-    descripcion: new FormControl()
+    clarification: new FormControl()
   });
 
   submitted: Boolean = false;
