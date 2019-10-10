@@ -26,12 +26,14 @@ export class TransaccionComponent implements OnInit {
   });
 
   submitted: Boolean = false;
+  waitting: Boolean = false;
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
   
     this.submitted = false;
+    this.waitting = false;
   
   }
 
@@ -42,19 +44,26 @@ export class TransaccionComponent implements OnInit {
     console.log(this.transaccion.valid);
     
     if (this.transaccion.valid) {
+      this.waitting = true;
     this.httpClient.post(
       environment.url + '/plan/crear', this.transaccion.value).subscribe(
         data => this.router.navigate(['/transactionconfirmation']), error => this.mostrarError(error.error)
       )
     }
+    console.log(this.sourceUserId.valid);
+    console.log(this.fechaPrimerVencimiento.valid);
+    console.log(this.amount.valid);
+    console.log(this.externalTransactionNumber.valid);
   }
 
 
   mostrarError(error) {
-    console.log(error);
     if (error == 'SOURCE USER INVALID') {
       this.transaccion.get("sourceUserId").setErrors({ serverError: 'No existe el CUIT ingresado.' });
+    } else {
+      this.transaccion.get("sourceUserId").setErrors({ serverError: error });
     }
+    this.waitting = false;
   }
 
 

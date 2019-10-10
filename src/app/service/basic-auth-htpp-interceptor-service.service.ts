@@ -11,26 +11,23 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    console.log("probando" + sessionStorage.getItem('username') + sessionStorage.getItem('token'));
 
 
     if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
-      console.log("probando" + sessionStorage.getItem('username') + sessionStorage.getItem('token'));
 
       req = req.clone({
         setHeaders: {
           Authorization: sessionStorage.getItem('token')
         }
       })
+    }
       return next.handle(req).pipe(catchError((error, caught) => {
         //intercept the respons error and displace it to the console
         console.log(error);
         this.handleAuthError(error);
         return of(error);
       }) as any);
-    }
-    else {
-      return next.handle(req);
-    }
   }
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {

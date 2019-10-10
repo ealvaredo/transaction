@@ -92,8 +92,12 @@
                 <input class="form-control" type="text" formControlName="localidad">
             </label>
         </div>
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <button type="button" class="btn btn-primary" (click)='onCancelar()'>Cancelar</button>
+              <button *ngIf="waitting" class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Guardando...
+              </button>
+        
+              <button *ngIf="!waitting" type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-primary" (click)='onCancelar()'>Cancelar</button>
     </form>
 </div>
