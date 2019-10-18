@@ -45,6 +45,10 @@ export class LauncherComponent implements OnInit {
     this.router.navigate(['/nuevaTransaccion']);
    }
 
+   botonPago() {
+     this.router.navigate(['/botonPago']);
+   }
+
    delete(id:number) {
      console.log(id);
     this.httpClient.post<void> (

@@ -16,6 +16,7 @@ import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-inter
 import { UserconfirmationComponent } from './userconfirmation/userconfirmation.component';
 import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
+import { BotonpagoComponent } from './botonpago/botonpago.component';
 
 
 
@@ -29,7 +30,8 @@ import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfi
     LoginComponent,
     UserconfirmationComponent,
     TransactionconfirmationComponent,
-    TransactiondeleteconfirmationComponent
+    TransactiondeleteconfirmationComponent,
+    BotonpagoComponent
   ],
   imports: [
     BrowserModule,

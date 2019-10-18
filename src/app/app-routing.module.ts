@@ -7,15 +7,19 @@ import { LoginComponent } from './login/login.component';
 import { UserconfirmationComponent } from './userconfirmation/userconfirmation.component';
 import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
+import { BotonpagoComponent } from './botonpago/botonpago.component';
 
 
 const routes: Routes = [
 
   {
+    path: 'botonPago',
+    component: BotonpagoComponent
+  },
+  {
     path: 'nuevoCliente',
     component: UserComponent
   },
-
   {
     path: 'nuevaTransaccion',
     component: TransaccionComponent
