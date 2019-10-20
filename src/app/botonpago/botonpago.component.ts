@@ -17,7 +17,7 @@ export class BotonpagoComponent implements OnInit {
 
   transaccion = new FormGroup({
     numeroCliente: new FormControl(),
-    sourceUserId: new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
+    sourceUserId: new FormControl('', [Validators.pattern('^(\\s|\\d{11})$')]),
     externalTransactionNumber: new FormControl('', [Validators.required]),
     cuotas: new FormControl(),
     fechaPrimerVencimiento: new FormControl('', [Validators.required]),

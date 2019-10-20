@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 
 export class TransaccionComponent implements OnInit {
 
+  currentDate: Date;
 
   transaccion = new FormGroup({
     numeroCliente: new FormControl(),
@@ -31,7 +32,9 @@ export class TransaccionComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
-  
+    this.currentDate = new Date();
+    this.currentDate.setTime(this.currentDate.getTime() + 1000*60*60*24*30);
+    console.log(this.currentDate);
     this.submitted = false;
     this.waitting = false;
   
