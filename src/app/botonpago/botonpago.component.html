@@ -57,7 +57,7 @@
             <label>
                 Fecha 1er vencimiento:
                 <input class="form-control" type="date" formControlName="fechaPrimerVencimiento"
-                    placeholder="dd/mm/yyyy">
+                    placeholder="dd/mm/yyyy" [ngModel]="currentDate | date:'yyyy-MM-dd'">
 
                 <div
                     *ngIf="fechaPrimerVencimiento?.invalid && (fechaPrimerVencimiento?.dirty || fechaPrimerVencimiento?.touched) || submitted">

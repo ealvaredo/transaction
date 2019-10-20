@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class BotonpagoComponent implements OnInit {
 
   boton: String = '<button>Pagar</button>';
+  currentDate: Date;
 
 
   transaccion = new FormGroup({
@@ -31,6 +32,8 @@ export class BotonpagoComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.currentDate = new Date();
+    this.currentDate.setTime(this.currentDate.getTime() + 1000*60*60*24*30);
 
     this.submitted = false;
     this.waitting = false;
