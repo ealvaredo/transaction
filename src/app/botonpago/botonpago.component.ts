@@ -13,15 +13,12 @@ import { environment } from 'src/environments/environment';
 export class BotonpagoComponent implements OnInit {
 
   boton: String = '<button>Pagar</button>';
-  currentDate: Date;
 
 
   transaccion = new FormGroup({
     numeroCliente: new FormControl(),
     sourceUserId: new FormControl('', [Validators.pattern('^(\\s|\\d{11})$')]),
-    externalTransactionNumber: new FormControl(''),
     cuotas: new FormControl(),
-    fechaPrimerVencimiento: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required, Validators.pattern('\\d+\\.\\d{2}')]),
     clarification: new FormControl()
   });
@@ -32,8 +29,6 @@ export class BotonpagoComponent implements OnInit {
   constructor(private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.currentDate = new Date();
-    this.currentDate.setTime(this.currentDate.getTime() + 1000*60*60*24*30);
 
     this.submitted = false;
     this.waitting = false;
@@ -41,7 +36,6 @@ export class BotonpagoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.fechaPrimerVencimiento.value);
 
     this.submitted = true;
     console.log(this.transaccion.valid);
@@ -57,9 +51,7 @@ export class BotonpagoComponent implements OnInit {
         )
     }
     console.log(this.sourceUserId.valid);
-    console.log(this.fechaPrimerVencimiento.valid);
     console.log(this.amount.valid);
-    console.log(this.externalTransactionNumber.valid);
   }
 
 
@@ -83,9 +75,7 @@ export class BotonpagoComponent implements OnInit {
 
 
   get sourceUserId() { return this.transaccion.get('sourceUserId'); }
-  get fechaPrimerVencimiento() { return this.transaccion.get('fechaPrimerVencimiento'); }
   get amount() { return this.transaccion.get('amount'); }
-  get externalTransactionNumber() { return this.transaccion.get('externalTransactionNumber'); }
 
 
 }

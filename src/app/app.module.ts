@@ -17,6 +17,7 @@ import { UserconfirmationComponent } from './userconfirmation/userconfirmation.c
 import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 import { BotonpagoComponent } from './botonpago/botonpago.component';
+import { StatusPipe } from './pipe/StatusPipe';
 
 
 
@@ -31,7 +32,8 @@ import { BotonpagoComponent } from './botonpago/botonpago.component';
     UserconfirmationComponent,
     TransactionconfirmationComponent,
     TransactiondeleteconfirmationComponent,
-    BotonpagoComponent
+    BotonpagoComponent, 
+    StatusPipe
   ],
   imports: [
     BrowserModule,

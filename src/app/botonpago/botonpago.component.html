@@ -32,45 +32,11 @@
         </div>
         <div class='form-group'>
             <label>
-                Número de comprobante:
-                <input class="form-control" type="text" formControlName="externalTransactionNumber">
-
-
-
-                <div
-                    *ngIf="externalTransactionNumber?.invalid && (externalTransactionNumber?.dirty || externalTransactionNumber?.touched) || submitted">
-                    <div *ngIf="externalTransactionNumber?.errors?.required" class="alert alert-danger">
-                        El nro de comprobante es requerido
-                    </div>
-                </div>
-
-
-            </label>
-        </div>
-        <div class='form-group'>
-            <label>
                 Cuotas:
                 <input class="form-control" type="text" formControlName="cuotas">
             </label>
         </div>
-        <div class='form-group'>
-            <label>
-                Fecha 1er vencimiento:
-                <input class="form-control" type="date" formControlName="fechaPrimerVencimiento"
-                    placeholder="dd/mm/yyyy" [ngModel]="currentDate | date:'yyyy-MM-dd'">
 
-                <div
-                    *ngIf="fechaPrimerVencimiento?.invalid && (fechaPrimerVencimiento?.dirty || fechaPrimerVencimiento?.touched) || submitted">
-                    <div *ngIf="fechaPrimerVencimiento?.errors?.required" class="alert alert-danger">
-                        Valor requerido
-                    </div>
-
-                </div>
-
-
-
-            </label>
-        </div>
         <div class='form-group'>
             <label>
                 Monto:

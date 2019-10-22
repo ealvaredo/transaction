@@ -63,7 +63,7 @@
                 <td>{{plan.externalTransactionNumber}} - {{plan.clarification}}</td>
                 <td>{{plan.expirationDate}}</td>
 <!--                <td>{{plan.updatedDate}}</td>-->
-                <td>PENDIENTE</td>
+                <td>{{plan.status | status}}</td>
                 <td>{{plan.amount |  number : '1.2-2'}}</td>
                 <td>{{plan.amountFee | number : '1.2-2'}}</td>
                 <td>{{plan.total| number : '1.2-2' }}</td>
