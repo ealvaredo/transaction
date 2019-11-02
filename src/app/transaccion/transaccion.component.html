@@ -1,111 +1,115 @@
 <div class='container'>
-        <form [formGroup]="transaccion" (ngSubmit)="onSubmit()">
-            <div class='form-group'>
-                <label for='numeroCliente'>
-                    Número de cliente:
-                    <input class="form-control" type="text" formControlName="numeroCliente">
-                </label>
-    
-    
-            </div>
-    
-    
-            <div class='form-group'>
-                <label>
-                    Cuit:
-                    <input class="form-control" type="text" formControlName="sourceUserId">
-
-                    <div *ngIf="sourceUserId.invalid && (sourceUserId.dirty || sourceUserId.touched || submitted)">
-                            <div *ngIf="sourceUserId.errors.required" class="alert alert-danger">
-                                El CUIT es un valor requerido
-                            </div>
-                            <div *ngIf="sourceUserId.errors.pattern" class="alert alert-danger">
-                                    El CUIT debe tener 11 caracteres numéricos
-                                </div>
-            
-                        </div>
-        
-                        <div *ngIf="sourceUserId.invalid && sourceUserId.errors?.serverError" class="alert alert-danger">
-                            {{sourceUserId.errors.serverError}}
-                        </div>
-        
-
-                </label>
-            </div>
-            <div class='form-group'>
-                <label>
-                    Número de comprobante:
-                    <input class="form-control" type="text" formControlName="externalTransactionNumber">
+    <form [formGroup]="transaccion" (ngSubmit)="onSubmit()">
+        <div class='form-group'>
+            <label for='numeroCliente'>
+                Número de cliente:
+                <input class="form-control" type="text" formControlName="numeroCliente">
+            </label>
 
 
+        </div>
 
-                    <div *ngIf="externalTransactionNumber?.invalid && (externalTransactionNumber?.dirty || externalTransactionNumber?.touched) || submitted">
-                            <div *ngIf="externalTransactionNumber?.errors?.required" class="alert alert-danger">
-                                El nro de comprobante es requerido
-                            </div>
-                        </div>
-        
 
-                </label>
-            </div>
-            <div class='form-group'>
-                <label>
-                    Cuotas:
-                    <input class="form-control" type="text" formControlName="cuotas">
-                </label>
-            </div>
-            <div class='form-group'>
-                <label>
-                    Fecha 1er vencimiento:
-                    <input class="form-control" type="date"    [ngModel]="currentDate | date:'yyyy-MM-dd'" formControlName="fechaPrimerVencimiento" placeholder="dd/mm/yyyy"   >
-
-                    <div *ngIf="fechaPrimerVencimiento?.invalid && (fechaPrimerVencimiento?.dirty || fechaPrimerVencimiento?.touched) || submitted">
-                        <div *ngIf="fechaPrimerVencimiento?.errors?.required" class="alert alert-danger">
-                                Valor requerido
-                            </div>
-            
+        <div class='form-group'>
+            <label>
+                Cuit:
+                <input class="form-control" type="text" formControlName="sourceUserId">
+                <div *ngIf="sourceUserId.invalid && (sourceUserId.dirty || sourceUserId.touched || submitted)">
+                    <div *ngIf="sourceUserId.errors.required" class="alert alert-danger">
+                        El CUIT es un valor requerido
                     </div>
-    
-
-
-                </label>
-            </div>
-            <div class='form-group'>
-                <label>
-                    Monto:
-                    <input class="form-control" type="text" formControlName="amount">
-
-                    <div *ngIf="amount?.invalid && (amount?.dirty || amount?.touched) || submitted">
-                            <div *ngIf="amount?.errors?.pattern" class="alert alert-danger">
-                                Ingresar un número decimal (54.34)
-                            </div>
-                            <div *ngIf="amount?.errors?.required" class="alert alert-danger">
-                                    Valor requerido
-                                </div>
-                
-                        </div>
-        
-
-
-
-                </label>
-            </div>
-
-            <div class='form-group'>
-                    <label>
-                        Descripción Producto o servicio:
-                        <input class="form-control" type="text" formControlName="clarification">
-                    </label>
+                    <div *ngIf="sourceUserId.errors.pattern" class="alert alert-danger">
+                        El CUIT debe tener 11 caracteres numéricos
+                    </div>
                 </div>
-    
-    
-                <button *ngIf="waitting" class="btn btn-primary " type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Guardando...
-                      </button>
-                
-                      <button *ngIf="!waitting" type="submit" class="btn btn-primary ">Guardar</button>
-                      <button type="button" class="btn btn-primary ml-1" (click)='onCancelar() '>Cancelar</button>
 
-        </form>
-    </div>
+                <div *ngIf="sourceUserId.invalid && sourceUserId.errors?.serverError" class="alert alert-danger">
+                    {{sourceUserId.errors.serverError}}
+                </div>
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Número de comprobante:
+                <input class="form-control" type="text" formControlName="externalTransactionNumber">
+
+
+
+                <div
+                    *ngIf="externalTransactionNumber?.invalid && (externalTransactionNumber?.dirty || externalTransactionNumber?.touched) || submitted">
+                    <div *ngIf="externalTransactionNumber?.errors?.required" class="alert alert-danger">
+                        El nro de comprobante es requerido
+                    </div>
+                </div>
+
+
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Cuotas:
+                <input class="form-control" type="text" formControlName="cuotas">
+                <div *ngIf="cuotas.invalid && (cuotas.dirty || cuotas.touched || submitted)">
+                    <div *ngIf="cuotas.errors.pattern" class="alert alert-danger">
+                        Las cuotas debe ser un número entero de 1 o dos dígitos (Por ejemplo 12).
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Fecha 1er vencimiento:
+                <input class="form-control" type="date" [ngModel]="currentDate | date:'yyyy-MM-dd'"
+                    formControlName="fechaPrimerVencimiento" placeholder="dd/mm/yyyy">
+
+                <div
+                    *ngIf="fechaPrimerVencimiento?.invalid && (fechaPrimerVencimiento?.dirty || fechaPrimerVencimiento?.touched) || submitted">
+                    <div *ngIf="fechaPrimerVencimiento?.errors?.required" class="alert alert-danger">
+                        Valor requerido
+                    </div>
+
+                </div>
+
+
+
+            </label>
+        </div>
+        <div class='form-group'>
+            <label>
+                Monto:
+                <input class="form-control" type="text" formControlName="amount">
+
+                <div *ngIf="amount?.invalid && (amount?.dirty || amount?.touched) || submitted">
+                    <div *ngIf="amount?.errors?.pattern" class="alert alert-danger">
+                        Ingresar un número decimal (54.34)
+                    </div>
+                    <div *ngIf="amount?.errors?.required" class="alert alert-danger">
+                        Valor requerido
+                    </div>
+
+                </div>
+
+
+
+
+            </label>
+        </div>
+
+        <div class='form-group'>
+            <label>
+                Descripción Producto o servicio:
+                <input class="form-control" type="text" formControlName="clarification">
+            </label>
+        </div>
+
+
+        <button *ngIf="waitting" class="btn btn-primary " type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Guardando...
+        </button>
+
+        <button *ngIf="!waitting" type="submit" class="btn btn-primary ">Guardar</button>
+        <button type="button" class="btn btn-primary ml-1" (click)='onCancelar() '>Cancelar</button>
+
+    </form>
+</div>

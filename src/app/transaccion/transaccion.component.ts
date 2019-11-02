@@ -20,7 +20,7 @@ export class TransaccionComponent implements OnInit {
     numeroCliente: new FormControl(),
     sourceUserId: new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
     externalTransactionNumber: new FormControl(''),
-    cuotas: new FormControl(),
+    cuotas: new FormControl('', [Validators.pattern('\\d{1,2}')]),
     fechaPrimerVencimiento: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required,Validators.pattern('\\d+\\.\\d{2}')]),
     clarification: new FormControl()
@@ -82,7 +82,7 @@ export class TransaccionComponent implements OnInit {
   get fechaPrimerVencimiento() { return this.transaccion.get('fechaPrimerVencimiento'); }
   get amount() { return this.transaccion.get('amount'); }
   get externalTransactionNumber() { return this.transaccion.get('externalTransactionNumber'); }
-  
+  get cuotas() { return this.transaccion.get('cuotas'); }
   
 
 }
