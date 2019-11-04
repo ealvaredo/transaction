@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 export class UserComponent implements OnInit {
 
   usuario = new FormGroup( {
+    nipearUserId  :  new FormControl(),
   numeroCliente : new FormControl(),
   lastName : new FormControl('', [Validators.required]),
   user : new FormControl('', [Validators.required, Validators.pattern('\\d{11}')]),
@@ -21,16 +22,34 @@ export class UserComponent implements OnInit {
   provincia : new FormControl(),
   localidad : new FormControl()});
 
-  constructor(private router: Router, private httpClient : HttpClient) { }
+  constructor(private router: Router, private httpClient : HttpClient, private route: ActivatedRoute) { }
 
   submitted: Boolean = false;
   waitting: Boolean = false;
-
+  sourceUserId: number;
 
   ngOnInit() {
 
+
+    this.route.params.subscribe(params => {
+      this.sourceUserId = params['id'];
+      this.loadUser(this.sourceUserId);
+  });
+
+
     this.submitted = false;
     this.waitting = false;
+  }
+
+  loadUser(sourceUserId: number) {
+
+    const params = new HttpParams()
+    .set('sourceUserId', sourceUserId.toString());
+
+    this.httpClient.get(environment.url + '/client/get', {params}).subscribe(
+      data => this.usuario.patchValue(data)
+    );
+
   }
 
 
@@ -43,11 +62,19 @@ export class UserComponent implements OnInit {
       this.waitting = true;
       this.httpClient.post(
         environment.url + '/client/crear', this.usuario.value).subscribe( 
-          data => this.router.navigate(['/usuarioconfirmacion']), error=> this.mostrarError(error.error)
+          data => this.afterSave(), error=> this.mostrarError(error.error)
           )
         }
     }
 
+
+    afterSave() {
+      if (null == this.sourceUserId) {
+        this.router.navigate(['/usuarioconfirmacion']);
+      } else {
+        this.router.navigate(['/launcher']);
+      }
+    }
 
     mostrarError(error) {
        if (error == 'Mandatory parameter - last name - was not found') {

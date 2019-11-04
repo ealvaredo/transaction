@@ -60,6 +60,7 @@ export class TransaccionComponent implements OnInit {
   }
 
 
+
   mostrarError(error) {
     if (error == 'SOURCE USER INVALID') {
       this.transaccion.get("sourceUserId").setErrors({ serverError: 'No existe el CUIT ingresado.' });

@@ -21,6 +21,10 @@ const routes: Routes = [
     component: UserComponent
   },
   {
+    path: 'editarCliente/:id',
+    component: UserComponent
+  },
+  {
     path: 'nuevaTransaccion',
     component: TransaccionComponent
   },

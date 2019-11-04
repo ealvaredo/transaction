@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-launcher',
@@ -13,6 +14,16 @@ import { environment } from 'src/environments/environment';
 export class LauncherComponent implements OnInit {
 
   planes: Object[];
+  pagina = 0;
+  total = 0;
+  pageOne = 1;
+  pageTwo = 2;
+  pageThree = 3;
+
+
+  buscar = new FormGroup({
+    texto: new FormControl(),
+  });
 
 
   constructor( private router: Router, private  httpClient: HttpClient) { }
@@ -25,12 +36,46 @@ export class LauncherComponent implements OnInit {
 
   load() {
 
-    this.httpClient.get<Object[]>(
-      environment.url + '/plan/get').subscribe(
-        data => this.planes = data, error => this.mostrarError(error.error)
+    this.httpClient.get<any>(
+      environment.url + '/plan/get', { params: { page: "1" }}).subscribe(
+         data => this.showList(data), error => this.mostrarError(error.error)
       );
   
   }  
+
+  showPagina(pagina: number) {
+
+    this.httpClient.get<any>(
+      environment.url + '/plan/get', { params: { page: pagina.toString() }}).subscribe(
+         data => this.showList(data), error => this.mostrarError(error.error)
+      );
+  }
+
+
+  filtrar() {
+    this.httpClient.post<any>(
+      environment.url + '/plan/filtrar', this.buscar.value).subscribe(
+         data => this.showList(data), error => this.mostrarError(error.error)
+      );
+  }
+
+
+  showList(pagina: any) {
+
+    this.planes = pagina.rows;
+    this.pagina = pagina.pager.page;
+    this.total = pagina.pager.total;
+
+    if (this.pagina > this.pageThree) {
+      this.pageOne = this.pageOne + 1;
+      this.pageTwo = this.pageTwo + 1;
+      this.pageThree = this.pageThree + 1;
+    } else if (this.pagina < this.pageOne) {
+      this.pageOne = this.pageOne  - 1;
+      this.pageTwo = this.pageTwo  - 1;
+      this.pageThree = this.pageThree - 1;
+    }
+  }
   
 
   mostrarError(error) {
@@ -55,5 +100,10 @@ export class LauncherComponent implements OnInit {
       environment.url + '/plan/delete', {id}).subscribe(
         data => this.router.navigate(['/deletetransactionconfirmation']));
  }
+
+ modifcarCliente(sourceUserId: number) {
+
+  this.router.navigate(['/editarCliente', sourceUserId]);
+}
  
 }
