@@ -134,7 +134,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
-                <a *ngIf="pagina > 1" class="page-link" [routerLink]="" aria-label="Previous"
+                <a *ngIf="pageOne > 1" class="page-link" [routerLink]="" aria-label="Previous"
                     (click)="showPagina(pageOne - 1)">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Anterior</span>
@@ -147,7 +147,7 @@
             <li *ngIf="total > 2" class="page-item" [ngClass]="{'active': pageThree==pagina}"><a class="page-link"
                     (click)="showPagina(pageThree)" [routerLink]="">{{pageThree}}</a></li>
             <li class="page-item">
-                <a *ngIf="pagina < total" class="page-link" [routerLink]="" aria-label="Next"
+                <a *ngIf="pageThree < total" class="page-link" [routerLink]="" aria-label="Next"
                     (click)="showPagina(pageThree + 1)">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Siguiente</span>
