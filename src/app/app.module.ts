@@ -18,6 +18,8 @@ import { TransactionconfirmationComponent } from './transactionconfirmation/tran
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 import { BotonpagoComponent } from './botonpago/botonpago.component';
 import { StatusPipe } from './pipe/StatusPipe';
+import { ImportacionComponent } from './importacion/importacion.component';
+import { FileSelectDirective, FileUploader, FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -33,7 +35,7 @@ import { StatusPipe } from './pipe/StatusPipe';
     TransactionconfirmationComponent,
     TransactiondeleteconfirmationComponent,
     BotonpagoComponent, 
-    StatusPipe
+    StatusPipe, ImportacionComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { StatusPipe } from './pipe/StatusPipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FileUploadModule
   ],
   providers: [
     {

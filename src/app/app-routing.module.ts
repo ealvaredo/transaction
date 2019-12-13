@@ -8,6 +8,7 @@ import { UserconfirmationComponent } from './userconfirmation/userconfirmation.c
 import { TransactionconfirmationComponent } from './transactionconfirmation/transactionconfirmation.component';
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 import { BotonpagoComponent } from './botonpago/botonpago.component';
+import { ImportacionComponent } from './importacion/importacion.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'deletetransactionconfirmation',
     component: TransactiondeleteconfirmationComponent
+  },
+  {
+    path: 'importar',
+    component: ImportacionComponent
   },
   {
     path: '',

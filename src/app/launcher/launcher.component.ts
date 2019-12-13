@@ -94,6 +94,11 @@ export class LauncherComponent implements OnInit {
      this.router.navigate(['/botonPago']);
    }
 
+   importar() {
+    this.router.navigate(['/importar']);
+  }
+
+
    delete(id:number) {
      console.log(id);
     this.httpClient.post<void> (
