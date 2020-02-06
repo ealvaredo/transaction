@@ -23,6 +23,9 @@ export class LauncherComponent implements OnInit {
 
   buscar = new FormGroup({
     texto: new FormControl(),
+    estado : new FormGroup({ 
+        status : new FormControl()
+    })    
   });
 
 
@@ -45,15 +48,19 @@ export class LauncherComponent implements OnInit {
 
   showPagina(pagina: number) {
 
-    this.httpClient.get<any>(
-      environment.url + '/plan/get', { params: { page: pagina.toString() }}).subscribe(
+    this.httpClient.post<any>(
+      environment.url + '/plan/get', { page: pagina.toString(), filtro: this.buscar.value }).subscribe(
          data => this.showList(data), error => this.mostrarError(error.error)
       );
   }
 
 
   filtrar() {
+
+    console.log('datos ' + this.buscar.value);
+
     this.httpClient.post<any>(
+
       environment.url + '/plan/filtrar', this.buscar.value).subscribe(
          data => this.showList(data), error => this.mostrarError(error.error)
       );
