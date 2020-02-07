@@ -112,6 +112,7 @@
             <th scope="col">Comisión</th>
             <th scope="col">Total</th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </thead>
         <tbody>
             <tr *ngFor="let plan of planes">
@@ -128,6 +129,7 @@
                 <td>{{plan.amountFee | number : '1.2-2'}}</td>
                 <td>{{plan.total| number : '1.2-2' }}</td>
                 <td><img src="assets/delete.png" (click)='delete(plan.id)' title="Eliminar transacción" /> </td>
+                <td><img src="assets/mail.png" (click)='mail(plan.id)' title="Enviar recordatorio de pago a cliente." /> </td>
 
             </tr>
         </tbody>

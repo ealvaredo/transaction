@@ -113,6 +113,14 @@ export class LauncherComponent implements OnInit {
         data => this.router.navigate(['/deletetransactionconfirmation']));
  }
 
+ mail(id:number) {
+  console.log(id);
+ this.httpClient.post<void> (
+   environment.url + '/plan/mail', {id}).subscribe(
+     data => this.router.navigate(['/mailconfirmation']));
+}
+
+
  modifcarCliente(sourceUserId: number) {
 
   this.router.navigate(['/editarCliente', sourceUserId]);

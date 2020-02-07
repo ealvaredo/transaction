@@ -20,6 +20,7 @@ import { BotonpagoComponent } from './botonpago/botonpago.component';
 import { StatusPipe } from './pipe/StatusPipe';
 import { ImportacionComponent } from './importacion/importacion.component';
 import { FileSelectDirective, FileUploader, FileUploadModule } from 'ng2-file-upload';
+import { MailconfirmationComponent } from './mailconfirmation/mailconfirmation.component';
 
 
 
@@ -35,7 +36,7 @@ import { FileSelectDirective, FileUploader, FileUploadModule } from 'ng2-file-up
     TransactionconfirmationComponent,
     TransactiondeleteconfirmationComponent,
     BotonpagoComponent, 
-    StatusPipe, ImportacionComponent
+    StatusPipe, ImportacionComponent, MailconfirmationComponent
   ],
   imports: [
     BrowserModule,

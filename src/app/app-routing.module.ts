@@ -9,6 +9,7 @@ import { TransactionconfirmationComponent } from './transactionconfirmation/tran
 import { TransactiondeleteconfirmationComponent } from './transactiondeleteconfirmation/transactiondeleteconfirmation.component';
 import { BotonpagoComponent } from './botonpago/botonpago.component';
 import { ImportacionComponent } from './importacion/importacion.component';
+import { MailconfirmationComponent } from './mailconfirmation/mailconfirmation.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: 'mailconfirmation',
+    component: MailconfirmationComponent
   }
 
 
