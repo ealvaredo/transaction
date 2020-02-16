@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl } from '@angular/forms';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-launcher',
@@ -125,5 +127,40 @@ export class LauncherComponent implements OnInit {
 
   this.router.navigate(['/editarCliente', sourceUserId]);
 }
+
+descargarListado() {
+
+
+  const params = new HttpParams()
+    .set('texto', this.buscar.get('texto').value).append('status', this.buscar.get('estado.status').value);
+
+  return this.httpClient.get(environment.url + '/plan/descargar',  { params, responseType: 'blob'})
+  .subscribe(data => saveAs(data, "transacciones.xlsx"));
+}
+
+/**
+     * Method is use to download file.
+     * @param data - Array Buffer data
+     * @param type - type of the document.
+     */
+    downLoadFile(data: Blob) {
+      console.log("respuesta");
+      saveAs(data, "prueba.xlsx");
+      /*
+      const blob = new Blob([data], { type: "application/ms-excel" });
+      console.log(blob)
+      const url= window.URL.createObjectURL(blob);
+      console.log(url)
+      window.open(url);
+*/
+      
+
+      //let pwa = window.open(url);
+      /*
+      if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+          alert( 'Please disable your Pop-up blocker and try again.');
+      }
+      */
+  }
  
 }
